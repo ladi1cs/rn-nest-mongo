@@ -1,0 +1,9 @@
+node_modules
+
+# Logs
+logs
+*.log
+
+#Build
+mobile/build
+server/dist
