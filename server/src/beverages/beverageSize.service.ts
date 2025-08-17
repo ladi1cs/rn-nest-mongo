@@ -1,8 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-//import { BeverageType } from "./beverageType.schema";
-import { BeverageSize } from "./beverageSize.schema";
+//import { BeverageSize } from "./beverageSize.schema";
 import { BeverageSizeModel } from "./beverageSize.model";
 
 @Injectable()
