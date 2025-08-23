@@ -13,7 +13,6 @@ export default function BeverageSizesScreen() {
     const deleteBeverageSizeMutation = useDeleteBeverageSize();
    
     const onDelete = async (id: string) => {
-        console.log("onDelete", {id})
         await deleteBeverageSizeMutation.mutateAsync({id});
     }
 

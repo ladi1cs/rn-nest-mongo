@@ -5,7 +5,6 @@ import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -31,26 +30,44 @@ export default function TabLayout() {
         }),
       }}>
       <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Orders',
-          tabBarIcon: ({ color }) => <FontAwesome6 name="money-check-dollar" size={Size.icon.large} color={color} />
-        }}
-      />
-      <Tabs.Screen
         name="beverage"
         options={{
           title: 'Beverages',
           tabBarIcon: ({ color }) => <Entypo name="drink" size={Size.icon.large} color={color} />
         }}
       />
-       <Tabs.Screen
+      <Tabs.Screen
         name="beverageSize"
         options={{
           title: 'Sizes',
           tabBarIcon: ({ color }) => <MaterialCommunityIcons name="format-size" size={Size.icon.large} color={color} />
         }}
       />
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: 'Orders',
+          tabBarIcon: ({ color }) => <FontAwesome6 name="money-check-dollar" size={Size.icon.large} color={color} />
+          //href: null,
+          //tabBarStyle: { display: "none" },
+          //tabBarButton: () => null,
+        }}
+      />
+      {/* <Tabs.Screen
+        name="order"
+        options={{
+          title: "Details",
+          //href: null, // prevents link generation
+          tabBarButton: () => null, // hides the tab button
+          tabBarStyle: { display: "none" },
+         }}
+      
+        // options={{
+        //   //title: 'Order',
+        //   href: null,
+        //   //tabBarIcon: ({ color }) => <MaterialCommunityIcons name="format-size" size={Size.icon.large} color={color} />
+        // }}
+      /> */}
     </Tabs>
   );
 }

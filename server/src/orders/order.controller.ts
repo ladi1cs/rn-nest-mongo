@@ -19,7 +19,7 @@ export class OrderController {
       customerName, contact, total, items: [],
      
     }
-    console.log("order.controller.createOrder",{ order})
+    //console.log("order.controller.createOrder",{ order})
     const generatedId = await this.orderService.createOrder(
       customerName,
       contact,

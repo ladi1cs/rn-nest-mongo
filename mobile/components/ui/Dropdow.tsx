@@ -27,7 +27,7 @@ export default function Dropdown(props: DropdownProps) {
           setItems(data.map(v => ({ label: v.label, value: v.value })));
         }
     }, [data]);
-    
+
     return (
         <View style={styles.container}>
             <ThemedText type="default">{label}</ThemedText>
@@ -50,10 +50,10 @@ export default function Dropdown(props: DropdownProps) {
 const styles = StyleSheet.create({
     container: {
         width: '80%',
-        paddingVertical: 20,
+        paddingVertical: 10,
         alignContent: 'center',
         justifyContent:'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
       },
       dropdown: {
         borderColor: Colors.common.frame,

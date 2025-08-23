@@ -26,7 +26,7 @@ export class OrderService {
             const beverage = await this.beverageModel.findById(item?.beverageId);
             const size = await this.beverageSizeModel.findById(item?.sizeId);
 
-            console.log("order.service.createOrder",{ beverage, size})
+            //console.log("order.service.createOrder",{ beverage, size})
             if (!beverage) throw new NotFoundException('Invalid beverage  ID provided');
             if (!size) throw new NotFoundException('Invalid size ID for beverage provided');
 

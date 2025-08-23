@@ -20,7 +20,7 @@ export default function Header(props: HeaderProps) {
             <TouchableOpacity style={{paddingLeft: 50}} onPress={onAddClick}>
                 <FontAwesome5 name="plus" size={Size.icon.large} color={Colors.common.default} />
             </TouchableOpacity>
-            }  
+            } 
         </ThemedView> 
     );
 }

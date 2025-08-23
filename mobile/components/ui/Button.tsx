@@ -4,6 +4,7 @@ import React from "react";
 import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
 
 export type ButtonType = 'default' | 'submit' | 'success' | 'fail';
+export type ButtonSize = 'small' | 'medium' | 'large';
 
 const bgColorMap = {
     default: Colors.common.frame, 
@@ -12,17 +13,36 @@ const bgColorMap = {
     fail: Colors.common.error
 }
 
+const btnSizeMap = {
+    small: {
+        height: 30,
+        padding: 5,
+        fontSize: Size.font.small
+    },
+    medium: {
+        height: 40,
+        padding: 7,
+        fontSize: Size.font.medium
+    },
+    large: {
+        height: 50,
+        padding: 10,
+        fontSize: Size.font.large
+    }
+}
+
 interface ButtonProps {
     title: string;
     width?: number;
     type?: ButtonType;
+    size?: ButtonSize;
     onPress: () => void;
 }
 
 export default function Button(props: ButtonProps) {
-    const { title, width, onPress, type = "default" } = props;
+    const { title, width, onPress, type = "default", size = 'large' } = props;
 
-    const styles = getStyles({width, type})
+    const styles = getStyles({width, type, size})
     return (
         <View style={styles.container}>
             <TouchableOpacity
@@ -44,9 +64,10 @@ const getStyles = (props: any) => StyleSheet.create({
     },
     button: {
         width: props.width,
+        height: btnSizeMap[props.size]?.height,
         backgroundColor: bgColorMap[props.type],
-        paddingVertical: 14,
-        paddingHorizontal: 28,
+        paddingVertical: btnSizeMap[props.size]?.padding,
+        paddingHorizontal: btnSizeMap[props.size]?.padding * 2,
         borderRadius: 12,
         alignItems: "center",
         justifyContent: "center",
@@ -58,7 +79,7 @@ const getStyles = (props: any) => StyleSheet.create({
     },
     text: {
         color: Colors.common.background,
-        fontSize: Size.font.small,
+        fontSize: btnSizeMap[props.size]?.fontSize,
         fontWeight: "600",
     },
 });

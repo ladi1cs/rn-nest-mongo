@@ -18,7 +18,6 @@ export default function TabTwoScreen() {
     
     const sizesMap = useMemo(() => {
         const map = beverageSizes?.reduce((acc: any, sz: any) => {
-            console.log("sizesMap", {sz, acc})
             acc[sz._id] = {size: sz.size, price: sz.price};
             return acc;
         },{});

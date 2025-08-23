@@ -26,7 +26,7 @@ export default function Input(props: InputProps) {
 const styles = StyleSheet.create({
     titleContainer: {
       width: '80%',
-      paddingVertical: 20,
+      paddingVertical: 10,
       alignContent: 'center',
       justifyContent:'center',
       backgroundColor: 'transparent'
