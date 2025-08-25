@@ -19,10 +19,10 @@ export default function ListItem(props: ListItemProps) {
             {children}
             <View style={styles.icons}>
                 { onEdit && <TouchableOpacity onPress={() => onEdit(itemId)}>
-                    <FontAwesome5 name="edit" size={ Size.icon.large } color={Colors.common.frame} />
+                    <FontAwesome5 name="edit" size={ Size.icon.medium } color={Colors.common.frame} />
                 </TouchableOpacity> }     
                 { onDelete && <TouchableOpacity onPress={() => onDelete(itemId)}>
-                    <MaterialIcons name="highlight-remove" size={ Size.icon.large } color={Colors.common.error} />
+                    <MaterialIcons name="highlight-remove" size={ Size.icon.medium } color={Colors.common.error} />
                 </TouchableOpacity> }         
             </View>
         </View>);

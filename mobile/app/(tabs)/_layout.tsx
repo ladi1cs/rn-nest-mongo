@@ -48,26 +48,9 @@ export default function TabLayout() {
         options={{
           title: 'Orders',
           tabBarIcon: ({ color }) => <FontAwesome6 name="money-check-dollar" size={Size.icon.large} color={color} />
-          //href: null,
-          //tabBarStyle: { display: "none" },
-          //tabBarButton: () => null,
         }}
       />
-      {/* <Tabs.Screen
-        name="order"
-        options={{
-          title: "Details",
-          //href: null, // prevents link generation
-          tabBarButton: () => null, // hides the tab button
-          tabBarStyle: { display: "none" },
-         }}
       
-        // options={{
-        //   //title: 'Order',
-        //   href: null,
-        //   //tabBarIcon: ({ color }) => <MaterialCommunityIcons name="format-size" size={Size.icon.large} color={color} />
-        // }}
-      /> */}
     </Tabs>
   );
 }

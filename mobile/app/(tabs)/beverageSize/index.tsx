@@ -1,11 +1,11 @@
 import { ScrollView, StyleSheet, TouchableOpacity, View, Text, FlatList } from 'react-native';
 import { useRouter} from 'expo-router';
 import { Size } from '@/constants/common';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Colors } from '@/constants/Colors';
 import useGetBeverageSizes from '@/queries/useGetBeverageSizes';
 import Header from '@/components/ui/Header';
 import useDeleteBeverageSize from '@/queries/useDeleteBeverageSize';
+import ListItem from '@/components/ListItem';
 
 export default function BeverageSizesScreen() {
     const router = useRouter();
@@ -16,13 +16,17 @@ export default function BeverageSizesScreen() {
         await deleteBeverageSizeMutation.mutateAsync({id});
     }
 
+    const onEdit = async (id: string) => {
+      router.push( {
+          pathname: "/beverageSize/addBeverageSize",
+          params: { id }
+      });
+    }
+
     const renderBeverageSizeItem = (item: any) => {
-       return(<View style={styles.itemContainer}>
-            <Text style={styles.sizeItem}>{`${item?.size} - $${item.price}`}</Text>
-            <TouchableOpacity onPress={() => onDelete(item._id)}>
-                <MaterialIcons name="highlight-remove" size={24} color={Colors.common.error} />
-            </TouchableOpacity>           
-        </View>);
+      return(<ListItem itemId={item._id} onDelete={onDelete} onEdit={onEdit}>
+        <Text style={styles.sizeItem}>{`${item?.size} - $${item.price}`}</Text>     
+      </ListItem>);
     }
 
     return (
@@ -39,13 +43,6 @@ export default function BeverageSizesScreen() {
 }
 
 const styles = StyleSheet.create({
-  itemContainer: {
-    flexDirection: 'row',
-    padding: 10,
-    justifyContent:'space-between',
-    borderBottomWidth: 1,
-    borderColor: 'white'
-  },
   item: {
     fontSize: Size.font.medium,
     height: 25,

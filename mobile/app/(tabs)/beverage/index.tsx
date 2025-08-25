@@ -47,6 +47,7 @@ export default function TabTwoScreen() {
             params: { id }
         });
     }
+    
     const renderBeverageSizeItem = (item: any) => {
         const sz = sizesMap[item]
         if(!sz) {

@@ -7,3 +7,5 @@ export { default as useGetBeverage } from './useGetBeverage';
 export { default as useGetBeverageSizes } from './useGetBeverageSizes';
 export { default as useGetBeverages } from './useGetBeverages';
 export { default as useUpdateBeverage } from './useUpdateBeverage';
+export { default as useGetBeverageSize } from './useGetBeverageSize';
+export { default as useUpdateBeverageSize } from './useUpdateBeverageSize';

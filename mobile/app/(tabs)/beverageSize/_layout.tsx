@@ -8,7 +8,7 @@ export default function BeverageLayout() {
                 name="addBeverageSize"
                 
                 options={{
-                    title: "Add Beverage Size",
+                    title: "Beverage Size",
                     presentation: 'modal',
                 }}
             />
