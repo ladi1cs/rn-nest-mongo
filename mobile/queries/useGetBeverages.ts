@@ -4,9 +4,7 @@ import { Keys } from './Keys';
 
 const useGetBeverages = () => { 
   return useQuery({
-    //queryKey: Keys.beverageList,//['beverages'],
-    queryKey: ['beverages'],
-    //queryKey: ['beverageList'],
+    queryKey: Keys.beverageList,
     queryFn: async (): Promise<any> => {
       const resp = await api.get('/beverages');
       return resp.data;

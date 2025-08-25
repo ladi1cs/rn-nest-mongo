@@ -12,12 +12,13 @@ export interface DropdownItem {
 interface DropdownProps {
     label?: string;
     data: DropdownItem[];
+    selected: DropdownItem;
     placeholder?: string;
     onSelect?: (option?: DropdownItem) => void;
 }
 
 export default function Dropdown(props: DropdownProps) {
-    const { data, label, onSelect, placeholder = "Select an option" } = props;
+    const { data, label, selected, onSelect, placeholder = "Select an option" } = props;
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [items, setItems] = useState([]);
@@ -27,6 +28,13 @@ export default function Dropdown(props: DropdownProps) {
           setItems(data.map(v => ({ label: v.label, value: v.value })));
         }
     }, [data]);
+
+    // useEffect(() => {
+    //     if (selected) {
+    //       setValue(selected.value);
+    //     }
+    // }, [selected]);
+
 
     return (
         <View style={styles.container}>

@@ -1,28 +1,57 @@
 
-import { router } from 'expo-router';
-import { useMemo, useState } from 'react';
+import { router, useLocalSearchParams } from 'expo-router';
+import { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import Dropdown, { DropdownItem } from '@/components/ui/Dropdow';
-import useGetBeverageSizes from '@/queries/useGetBeverageSizes';
 import List from '@/components/ui/List';
-import useAddBeverage from '@/queries/useAddBeverage';
+import { toMap } from '@/utils/utils'
+import { 
+  useAddBeverage, 
+  useGetBeverageSizes,
+  useGetBeverage,
+  useUpdateBeverage
+} from '@/queries';
 
 export default function AddBeverage() {
 
   const [name, setName] = useState('');
   const [selectedItems, setSelectedItems] = useState<DropdownItem[]>([]);
   const {data: beverageSizes} = useGetBeverageSizes();
+  const { id: beverageId } = useLocalSearchParams();
   const addBeverage = useAddBeverage();
+  const updateBeverage = useUpdateBeverage(beverageId);
+  const {data: selectedBeverage} = useGetBeverage(beverageId);
+  
+  
+  useEffect(() => {
+    if(selectedBeverage) {
+      setName(selectedBeverage.name);
+
+      const selectedOptions = beverageSizes
+      .filter(bs => selectedBeverage.sizes?.includes(bs._id))
+      .map((sz: any) => { 
+        return {value: sz._id, label: `${sz?.size} - $${sz.price}`}
+      });
+
+      setSelectedItems(selectedOptions);
+    }
+  }, [selectedBeverage])
+  
 
   const sizeOptions = useMemo(() => {
-    const options = beverageSizes?.sort((a,b)=>{return a.price - b.price})
+    if (!beverageSizes) {
+      return [];
+    }
+
+    const options = beverageSizes
+    .sort((a,b)=>{return a.price - b.price})
     .map((sz: any) => { 
       return {value: sz._id, label: `${sz?.size} - $${sz.price}`}
     });
 
-    return options.sort();
+    return options;
   },[beverageSizes])
 
   const onSave = async () => {
@@ -30,7 +59,14 @@ export default function AddBeverage() {
       name,
       sizes: selectedItems.map(i => i.value)
     }
-     await addBeverage.mutateAsync(newBeverage);
+    
+    if( selectedBeverage ) {
+      await updateBeverage.mutateAsync(newBeverage);
+    }
+    else {
+      await addBeverage.mutateAsync(newBeverage);
+    }
+
     router.back();
   }
 
@@ -43,7 +79,7 @@ export default function AddBeverage() {
         onSelect={(item: DropdownItem) => setSelectedItems([...selectedItems, item])}/>
       <List data={selectedItems.map(i => i.label)} label='Selected Sizes'/>
       <View style={styles.buttons}>
-        <Button title='Save' type="success" onPress={onSave}/>
+        <Button title={selectedBeverage ? 'Update' : 'Save'} type="success" onPress={onSave}/>
         <Button title='Cancel' onPress={()=> router.back()}/>
       </View>
     </View>

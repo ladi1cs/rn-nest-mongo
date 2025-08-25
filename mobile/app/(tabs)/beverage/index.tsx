@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, TouchableOpacity, View, Text, FlatList } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity, View, Text, FlatList, Alert } from 'react-native';
 import { Collapsible } from '@/components/Collapsible';
 import { useRouter} from 'expo-router';
 import useGetBeverages from '@/queries/useGetBeverages';
@@ -9,6 +9,7 @@ import useDeleteBeverages from '@/queries/useDeleteBeverage';
 import useGetBeverageSizes from '@/queries/useGetBeverageSizes';
 import { useMemo } from 'react';
 import Header from '@/components/ui/Header';
+import ListItem from '@/components/ListItem';
 
 export default function TabTwoScreen() {
     const router = useRouter();
@@ -27,9 +28,25 @@ export default function TabTwoScreen() {
     },[beverageSizes])
 
     const onDelete = async (id: string) => {
-        await deleteBeveragesMutation.mutateAsync({id});
+        Alert.alert("Delete Beverage", 
+        "Are you sure you want to delete beverage?",
+        [
+            {
+                text: "OK", 
+                onPress: async () => await deleteBeveragesMutation.mutateAsync({id})
+            },
+            {
+              text: "Cancel"
+            }           
+        ]);
     }
 
+    const onEdit = async (id: string) => {
+        router.push( {
+            pathname: "/beverage/addBeverage",
+            params: { id }
+        });
+    }
     const renderBeverageSizeItem = (item: any) => {
         const sz = sizesMap[item]
         if(!sz) {
@@ -51,14 +68,11 @@ export default function TabTwoScreen() {
     }
 
     const renderBeverageItem = (item: any) => {
-       return(<View style={styles.itemContainer}>
+       return(<ListItem itemId={item._id} onDelete={onDelete} onEdit={onEdit}>
             <Collapsible title={item.name} bgColor={Colors.common.none}>
                 {renderSizes(item)}
-            </Collapsible>
-            <TouchableOpacity onPress={() => onDelete(item._id)}>
-                <MaterialIcons name="highlight-remove" size={24} color={Colors.common.error} />
-            </TouchableOpacity>           
-        </View>);
+            </Collapsible>        
+        </ListItem>);
     }
 
     return (
