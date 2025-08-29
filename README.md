@@ -56,7 +56,7 @@ cafe/
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/ladi1cs/cafe](https://github.com/ladi1cs/cafe)
+git clone git@github.com:ladi1cs/cafe.git
 cd cafe
 ```
 
