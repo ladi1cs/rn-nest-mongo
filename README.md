@@ -1,4 +1,4 @@
-# RN-Nestjs-Mongo
+# RN-Nestjs-Mongoose Boilerplate
 This is a full-stack solution demonstrating a simple mobile application (React Native) and a backend server (NestJS + Mongoose).
 The system allows to create, read, update and delete Beverages and Beverage Sizes as well as create order of beverages through the mobile app, while the backend manages beverage options and orders.
 
