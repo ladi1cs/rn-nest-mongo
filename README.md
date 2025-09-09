@@ -4,13 +4,13 @@ The system allows to create, read, update and delete Beverages and Beverage Size
 
 ## Project Structure
 
-cafe/
+rn_nest_mongo/
 
--- mobile/ # React-Native (Expo) mobile app
+-- mobile/ - React-Native (Expo) mobile app
 
--- server/ # NestJS + Mongoose backend
+-- server/ - NestJS + Mongoose backend
 
--- README.md # Project documentation
+-- README.md - Project documentation
 
 
 ---
