@@ -12,11 +12,10 @@ import { OrderModule } from './orders/order.module';
     BeverageModule,
     BeverageSizeModule,
     OrderModule,
-    ConfigModule.forRoot(),
-    MongooseModule.forRoot(
-  "mongodb+srv://ladisdev:Sisma4as@lscluster.hirjveg.mongodb.net/?retryWrites=true&w=majority&appName=LSCluster",
-      
-    ),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    MongooseModule.forRoot(process.env.MONGODB_URI),
   ],
   controllers: [AppController],
   providers: [AppService],

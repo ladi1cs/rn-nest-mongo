@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Beverage",
-    "slug": "Beverage",
+    "name": "Beverage1",
+    "slug": "Beverage2",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/1csicon.png",
     "scheme": "beverage",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -28,7 +28,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/splash.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
